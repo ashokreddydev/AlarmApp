@@ -5,86 +5,64 @@
         <!-- panel preview -->
         <div class="col-sm-8 col-sm-offset-2">
             <h4>Alarm:</h4>
-           
             <div class="panel panel-default">
                 <div class="panel-body form-horizontal payment-form">
-                  
-                   
-                       
-                    
-                <form ng-submit="addAlarm()">
-	               <input type="datetime-local" ng-model="alarmTime"  required>
-	               <input class="btn-primary" type="submit" value="+ Add Alarm">
+                <form ng-submit="addAlarm()" name="registerForm"
+      novalidate>
+	               <input type="datetime-local" ng-model="alarmTime" name="SetDate" required>
+                    <p ng-show="registerForm.SetDate.$touched && registerForm.SetDate.$invalid"></p>
+                    <input class="btn-primary"  ng-hide="registerForm.$invalid" type="submit" value="+ Add Alarm">
                 </form>
-                   
-                
-                    
-                   
-                </div>
+             </div>
             </div> 
-           
         </div> 
         </div>
-        
-
-        
-        
         <!-- table preview -->
    
-    <div class="col-sm-8 col-sm-offset-2 " >
+    <div class="col-sm-8 col-sm-offset-2 "  ng-show="alarmscedule">
         <h4>Alarm Schedule</h4>
         <div class="table-responsive">
-    
                 <table id="mytable" class="table table-bordered table-hover">
-
                            <thead>
                                <tr>
-                                   <th><strong>Date</strong></th>
-                                   <th><strong>Time </strong></th>
-                                   <th><strong>Action</strong></th>
+                                    <th><strong>Date</strong></th>
+                                    <th><strong>Time </strong></th>
+                                    <th><strong>Action</strong></th>
                                 </tr>
                            </thead>
                     <tbody>
-                        <tr ng-repeat="alarm in alarms" >
+                        <tr ng-repeat="alarm in alarms track by $index" >
                         <td><span class="">{{alarm.time | date:'h:mm a'}}</span></td>
                         <td><span class="">{{alarm.time | date:'MMM d, yyyy'}}</span></td>
                         <td style="text-align:center"><span style="cursor:pointer" class="dismiss-alarm" ng-click="removeAlarm($index)"><span class="glyphicon glyphicon-trash"></span></span></td>
                       </tr>
                     </tbody>
-
                 </table>
-   
             </div>
-            
         </div>
     <audio src="ringtone/alarm.wav" loop id="alarm_audio"></audio>
     
-    
       <div id="myModal" class="modal">
-
   <!-- Modal content -->
+<div class="modal-dialog modal-md">
   <div class="modal-content">
-     
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h1 class="modal-title">Alarm Alert</h1>
       </div>
       <div class="modal-body">
-        <p ng-model="alarmTime">{{alarmTime}}</p>
+        <span class="">
+            <time class="hours-minutes">{{arrayTime.time | date:'h:mm a' }}</time>
+            <time class="month-day-year">{{arrayTime.time | date }}</time>
+          </span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" >Dismiss</button>
-        <button type="button" class="btn btn-primary" ng-click="Continue()">Continue</button>
-       
-      </div>
-    
+          <input type="text" value={{indexVale}} ng-model="indexVale" hidden>
+          <input type="text" value={{arrayTime}} ng-model="arrayTime" hidden>
+        <button type="button" class="btn btn-primary" ng-click="dismiss(indexVale,indexVale)">Dismiss</button>
+        <button type="button" class="btn btn-primary" ng-click="Continue(arrayTime)">Continue</button>
   </div>
-
+</div>     
 </div>
-    
-    
 	</div>
 
  

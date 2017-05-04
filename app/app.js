@@ -4,7 +4,7 @@ angular.module('Alarm',['ngRoute'])
 	$routeProvider
 
 	.when('/',{
-		templateUrl:'views/home.html',
+		templateUrl:'AlarmApp/views/home.html',
         controller:'homecontroller'
 		
 	})

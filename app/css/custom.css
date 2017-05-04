@@ -3,7 +3,19 @@
     padding: 8px;
 }
 
-
+.dropdown1{
+    border-radius: 10px;
+    margin-top: 10px !important;
+    line-height: 22px;
+    border: #ccc 1px solid;
+    padding: 7px;
+    font-size: 15px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 238px;
+    text-align: center;
+    display: block;
+}
 
 
 html, body, div, span, applet, object, iframe,
